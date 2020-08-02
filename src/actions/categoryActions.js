@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { API} = require('../config');
 const { CATEGORY_LIST_REQUEST, 
          CATEGORY_LIST_SUCCESS, 
          CATEGORY_LIST_FAIL,
@@ -13,7 +14,7 @@ const { CATEGORY_LIST_REQUEST,
 const listCategory = () => async (dispatch) => {
     try {
         dispatch({type: CATEGORY_LIST_REQUEST});
-        const {data} = await axios.get('http://localhost:5000/api/category');
+        const {data} = await axios.get(API + 'api/category');
         dispatch({type: CATEGORY_LIST_SUCCESS, payload: data});
     }
     catch (error) {
@@ -25,7 +26,7 @@ const deleteCategory = (category) => async (dispatch, getState) => {
     try {
         const { userSignin: { userInfo } } = getState();
             dispatch({type: CATEGORY_DELETE_REQUEST, payload: category});
-            const {data} = await axios.delete('http://localhost:5000/api/category/' + category, {
+            const {data} = await axios.delete(API + 'api/category/' + category, {
                 headers: {
                     'Authorization': 'Bearer ' + userInfo.token
                 }
@@ -41,7 +42,7 @@ const saveCategory = (category) => async (dispatch, getState) => {
 
         dispatch({type: CATEGORY_SAVE_REQUEST, payload: category});
         const { userSignin: { userInfo } } = getState();
-                const {data} = await axios.post('http://localhost:5000/api/category', {category}, {
+                const {data} = await axios.post(API + 'api/category', {category}, {
                     headers: {
                         'Authorization': 'Bearer ' + userInfo.token
 

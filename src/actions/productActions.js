@@ -1,4 +1,5 @@
 const axios = require('axios');
+const { API} = require('../config');
 const { PRODUCT_LIST_REQUEST, 
          PRODUCT_LIST_SUCCESS, 
          PRODUCT_LIST_FAIL,
@@ -16,7 +17,7 @@ const { PRODUCT_LIST_REQUEST,
 const listProducts = () => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_LIST_REQUEST});
-        const {data} = await axios.get('http://localhost:5000/api/products');
+        const {data} = await axios.get(API + 'api/products');
         dispatch({type: PRODUCT_LIST_SUCCESS, payload: data});
     }
     catch (error) {
@@ -27,7 +28,7 @@ const listProducts = () => async (dispatch) => {
 const detailsProduct = (productId) => async (dispatch) => {
     try {
         dispatch({type: PRODUCT_DETAILS_REQUEST, payload: productId});
-        const {data} = await axios.get('http://localhost:5000/api/products/' + productId);
+        const {data} = await axios.get(API + 'api/products/' + productId);
         dispatch({type: PRODUCT_DETAILS_SUCCESS, payload: data})
     }
     catch (error) {
@@ -39,7 +40,7 @@ const deleteProduct = (productId) => async (dispatch, getState) => {
     try {
         const { userSignin: { userInfo } } = getState();
             dispatch({type: PRODUCT_DELETE_REQUEST, payload: productId});
-            const {data} = await axios.delete('http://localhost:5000/api/products/' + productId, {
+            const {data} = await axios.delete(API + 'api/products/' + productId, {
                 headers: {
                     'Authorization': 'Bearer ' + userInfo.token
                 }
@@ -56,14 +57,14 @@ const saveProduct = (product) => async (dispatch, getState) => {
         dispatch({type: PRODUCT_SAVE_REQUEST, payload: product});
         const { userSignin: { userInfo } } = getState();
             if(!product._id){
-                const {data} = await axios.post('http://localhost:5000/api/products', product, {
+                const {data} = await axios.post(API + 'api/products', product, {
                     headers: {
                         'Authorization': 'Bearer ' + userInfo.token
                     }
                 });
                 dispatch({type: PRODUCT_SAVE_SUCCESS, payload: data});
             }else{
-                const {data} = await axios.put('http://localhost:5000/api/products/' + product._id, product, {
+                const {data} = await axios.put(API + 'api/products/' + product._id, product, {
                     headers: {
                         'Authorization': 'Bearer ' + userInfo.token
                     }

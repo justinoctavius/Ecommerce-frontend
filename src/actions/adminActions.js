@@ -6,12 +6,13 @@ import { ADMIN_LIST_REQUEST,
          ADMIN_DELETE_FAIL } 
 from "../constants/adminConstants";
 import Axios from "axios";
+const { API} = require('../config');
 
 const listAdmins = () => async (dispatch, getState) => {
     dispatch({type: ADMIN_LIST_REQUEST, payload: {}});
     try {
         const { userSignin: { userInfo } } = getState();
-        const {data} = await Axios.get('http://localhost:5000/api/users/getadmins', {
+        const {data} = await Axios.get( API + 'api/users/getadmins', {
             headers: {
                 'Authorization': 'Bearer ' + userInfo.token
             }
@@ -26,7 +27,7 @@ const deleteAdmins = (adminId) => async (dispatch, getState) => {
     dispatch({type: ADMIN_DELETE_REQUEST, payload: {}});
     try {
         const { userSignin: { userInfo } } = getState();
-        const {data} = await Axios.delete('http://localhost:5000/api/users/getAdmins/' + adminId, {
+        const {data} = await Axios.delete(API + 'api/users/getAdmins/' + adminId, {
             headers: {
                 'Authorization': 'Bearer ' + userInfo.token
             }

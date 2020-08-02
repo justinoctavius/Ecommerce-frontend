@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { listProducts } from '../actions/productActions';
 import '../styles/home.css'
-
  function HomeScreen(props) {
     const productList = useSelector(state => state.productList);
     const { products, loading, error } = productList;
