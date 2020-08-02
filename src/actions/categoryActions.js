@@ -1,8 +1,7 @@
 const axios = require('axios');
-const { API} = require('../config');
 const { CATEGORY_LIST_REQUEST, 
-         CATEGORY_LIST_SUCCESS, 
-         CATEGORY_LIST_FAIL,
+    CATEGORY_LIST_SUCCESS, 
+    CATEGORY_LIST_FAIL,
          CATEGORY_SAVE_REQUEST,
          CATEGORY_SAVE_SUCCESS,
          CATEGORY_SAVE_FAIL,
@@ -10,7 +9,8 @@ const { CATEGORY_LIST_REQUEST,
          CATEGORY_DELETE_SUCCESS,
          CATEGORY_DELETE_FAIL
         } = require('../constants/categoryConstants'); 
-
+const { API} = require('../config');
+        
 const listCategory = () => async (dispatch) => {
     try {
         dispatch({type: CATEGORY_LIST_REQUEST});
