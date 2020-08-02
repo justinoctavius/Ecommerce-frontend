@@ -1,5 +1,5 @@
-const axios = require('axios');
-const { CATEGORY_LIST_REQUEST, 
+import axios from 'axios';
+import { CATEGORY_LIST_REQUEST, 
     CATEGORY_LIST_SUCCESS, 
     CATEGORY_LIST_FAIL,
          CATEGORY_SAVE_REQUEST,
@@ -8,8 +8,8 @@ const { CATEGORY_LIST_REQUEST,
          CATEGORY_DELETE_REQUEST,        
          CATEGORY_DELETE_SUCCESS,
          CATEGORY_DELETE_FAIL
-        } = require('../constants/categoryConstants'); 
-const { API} = require('../config');
+        } from '../constants/categoryConstants'; 
+import { API} from '../config';
         
 const listCategory = () => async (dispatch) => {
     try {
@@ -55,4 +55,4 @@ const saveCategory = (category) => async (dispatch, getState) => {
         }
 } 
 
-module.exports = { listCategory, saveCategory, deleteCategory }
+export { listCategory, saveCategory, deleteCategory }

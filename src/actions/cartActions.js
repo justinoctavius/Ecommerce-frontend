@@ -2,7 +2,7 @@ import { CART_ADD_ITEM, CART_REMOVE_ITEM,
          CART_SAVE_SHIPPING, CART_SAVE_PAYMENT } from "../constants/cartConstants";
 import Cookie from 'js-cookie';
 import axios from 'axios'
-const { API} = require('../config');
+import { API} from '../config';
 
 const addToCart = (productId, qty) => async (dispatch, getState) => {
     try{

@@ -1,5 +1,5 @@
-const axios = require('axios');
-const { PRODUCT_LIST_REQUEST, 
+import axios from 'axios';
+import { PRODUCT_LIST_REQUEST, 
     PRODUCT_LIST_SUCCESS, 
     PRODUCT_LIST_FAIL,
     PRODUCT_DETAILS_REQUEST,
@@ -11,8 +11,8 @@ const { PRODUCT_LIST_REQUEST,
     PRODUCT_DELETE_REQUEST,        
     PRODUCT_DELETE_SUCCESS,
     PRODUCT_DELETE_FAIL
-} = require('../constants/productConstants'); 
-const { API} = require('../config');
+} from '../constants/productConstants'; 
+import { API} from '../config';
 
 const listProducts = () => async (dispatch) => {
     try {
@@ -76,4 +76,4 @@ const saveProduct = (product) => async (dispatch, getState) => {
     }
 } 
 
-module.exports = { listProducts, detailsProduct, saveProduct, deleteProduct }
+export { listProducts, detailsProduct, saveProduct, deleteProduct }

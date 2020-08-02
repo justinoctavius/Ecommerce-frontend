@@ -1,9 +1,9 @@
-const { ADMIN_DELETE_REQUEST, 
+import { ADMIN_DELETE_REQUEST, 
         ADMIN_DELETE_SUCCESS, 
         ADMIN_DELETE_FAIL, 
         ADMIN_LIST_REQUEST, 
         ADMIN_LIST_SUCCESS, 
-        ADMIN_LIST_FAIL } = require("../constants/adminConstants");
+        ADMIN_LIST_FAIL } from "../constants/adminConstants";
 
 function adminListReducer(state={}, action){
     switch(action.type){
