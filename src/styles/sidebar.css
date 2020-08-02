@@ -1,0 +1,57 @@
+.items{
+    list-style-type: none;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 0;
+}
+.items li{
+    margin-bottom: .5rem;
+    border-bottom: .1rem #c0c0c0 solid;
+    text-align: center;
+}
+.items a{
+    color: #c0c0c0;
+}
+.items a:hover{
+    color: #f08000;
+}
+h3{
+    padding-left: 1rem;
+}
+.brand button{
+    font-size: 3rem;
+    padding: .5rem;
+    background: none;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+  }
+.sidebar{
+  position: fixed;
+  transition: all .5s;
+  transform: translateX(-30rem);
+  -webkit-transform: translateX(-30rem);
+  -moz-transform: translateX(-30rem);
+  -ms-transform: translateX(-30rem);
+  -o-transform: translateX(-30rem);
+  width: 20rem;
+  background-color: #273441ee;
+  height: 100%;
+}
+.sidebar.open{
+  transform: translateX(0);
+}
+.sidebar-close-button{
+  width: 3rem;
+  height: 3rem;
+  padding: .5rem;
+  font-size: 3rem;
+  padding-top: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 1rem;
+  top: .5rem;
+}
+.sidebar-close-button:hover{
+  color: #f08000;
+}

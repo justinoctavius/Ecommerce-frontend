@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { register } from '../actions/userActions';
 
 export default function RegisterScreen(props) {
+    const [showError, setShowError] = useState(false);
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -11,16 +12,31 @@ export default function RegisterScreen(props) {
     const userRegister = useSelector(state => state.userRegister);
     const {loading, userInfo, error} = userRegister;
     const dispatch = useDispatch();
-    
+
+    let redirect;
+    if(props.location){
+        redirect = props.location.search ? props.location.search.split('=')[1] : '/';
+    }else{
+        redirect = '';
+    }               
+
     useEffect(() => {
         if (userInfo) {
-            props.history.push('/')
+            props.history ? props.history.push(redirect) : document.location = '/'
         }
     }, [userInfo]);
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(register(name, email, password));
+        if(password === rePassword) {
+            if(props.admin){
+                dispatch(register(name, email, password,props.admin));
+            }else{
+                dispatch(register(name, email, password));
+            }
+        }else{
+            setShowError(true)
+        }
     }
 
     return (
@@ -28,11 +44,11 @@ export default function RegisterScreen(props) {
             <form onSubmit={submitHandler}>
                 <ul className="form-container">
                     <li>
-                        <h2>Create an Account</h2>
+                        <h2>Create an {props.admin && 'Admin'} Account</h2>
                     </li>
                     <li>
                         {loading && <div>Loading...</div>}
-                        {error && <div>{error}</div>}
+                        {error && <div className="error">{error}</div>}
                     </li>
                     <li>
                         <label htmlFor="name">
@@ -53,6 +69,7 @@ export default function RegisterScreen(props) {
                         <input type="password" id="password" name="password" onChange={e => setPassword(e.target.value)} />
                     </li>
                     <li>
+                        {showError && <p className="error">The password are not the same</p>}
                         <label htmlFor="rePassword">
                             Confirm the password
                         </label>
@@ -63,12 +80,16 @@ export default function RegisterScreen(props) {
                             Register
                         </button>
                     </li>
-                    <li className="text-center">
-                        Already have an account?
-                    </li>
-                    <li>
-                        <Link className="button text-center secondary" to='/signin'>Sign-In</Link>
-                    </li>
+                    {!props.admin &&
+                        <>
+                        <li className="text-center">
+                            Already have an account?
+                        </li>
+                        <li>
+                        <Link to={redirect === '/' ? 'signin': 'signin?redirect=shipping'} className="button text-center secondary">Sign-In</Link>
+                        </li>
+                        </>
+                    }
                 </ul>
             </form>
         </div>

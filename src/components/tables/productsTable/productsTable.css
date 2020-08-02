@@ -1,0 +1,19 @@
+.table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+.product-list{
+    overflow-x:auto;
+}
+th{
+    text-align: left;
+    padding: 1rem;
+}
+td{
+    padding: 1rem;
+}
+tbody>tr:nth-child(odd){
+    background-color: #e0e0e0;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, removeFromCart } from '../actions/cartActions';
 import { Link } from 'react-router-dom';
@@ -7,22 +7,23 @@ function CartScreen(props) {
     
     const cart = useSelector(state => state.cart);
     const { cartItems } = cart;
-
     const productId = props.match.params.id;
-    const qty = props.location.search ? Number(props.location.search.split("=")[1]): 1;
+    
+    const qty = Number(props.location.search.split("=")[1]);
     const dispatch = useDispatch();
 
     const removeFromCartHandler = (productId) => {
         dispatch(removeFromCart(productId));
     }
-
+    
+    
     const checkoutHandler = () => {
         props.history.push('/signin?redirect=shipping');
     }
-
+    
     useEffect(() => {
         if(productId){
-            dispatch(addToCart(productId, qty))
+            dispatch(addToCart(productId, qty));
         }
     }, [])
 
@@ -30,20 +31,23 @@ function CartScreen(props) {
 
     return (
         <div className="cart">
+            <div className="hover pointer">
+                <Link to={'/'} className="link"><i className="fas fa-arrow-left"></i> Back</Link>
+            </div>
             <div className='cart-list'>
                 <ul className="cart-list-container">
                     <li>
                         <h3>
-                            Shopping Cart
+                            Shopping Cart <i className="fas fa-shopping-cart"></i>
                         </h3>
                         <div>
-                            Price
+                            Price:
                         </div>
                     </li>
                         {
                             cartItems.length === 0 ?
-                            <div>
-                                Cart is empty
+                            <div className="font-5">
+                                Cart is empty <i className="far fa-tired"></i>
                             </div>
                             :
                             cartItems.map( item => 
@@ -54,23 +58,20 @@ function CartScreen(props) {
                                     <div className="cart-name">
                                         <div>
                                             <div>
-                                                <Link to={"/product/" + item.product}>
+                                                <Link to={"/product/" + item.product} className="link">
                                                     {item.name}
                                                 </Link>
                                             </div>
-                                            Qty:
-                                            <select value={item.qty} onChange={(e) => {dispatch(addToCart(item.product, e.target.value))}}>
-                                                {[...Array(item.countInStock).keys()].map(x => 
-                                                    <option key={x + 1} value={x + 1}> {x + 1} </option>    
-                                                )}
-                                            </select>
-                                            <button type="button" className="button" onClick={() => removeFromCartHandler(item.product)}>
-                                                Delete
-                                            </button>
+                                            Qty: <b className="danger">{item.qty}</b> <i className="hover-danger 
+                                                                          pointer 
+                                                                          fa fa-trash-alt" 
+                                                                onClick={() => removeFromCartHandler(item.product)}>
+                                                                Delete
+                                                            </i> 
                                         </div>
                                     </div>
                                     <div className="cart-price">
-                                        ${item.price}
+                                        <b>${item.price}</b>
                                     </div>
                                 </li>
                             )
@@ -81,7 +82,7 @@ function CartScreen(props) {
                 <h3>
                     Subtotal ( {cartItems.reduce((a, c) => a + c.qty, 0)} items )
                     :
-                    ${cartItems.reduce((a, c) => a + c.price * c.qty, 0)}
+                    <b className="success">${cartItems.reduce((a, c) => a + c.price * c.qty, 0)} <i className="fas fa-money-bill-wave"></i> </b>
                 </h3>
                 <button onClick={checkoutHandler} className="button primary full-width" disabled={cartItems.length === 0}>
                     Proceed to Checkout

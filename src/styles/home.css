@@ -1,0 +1,59 @@
+/* Home Screen */
+.products {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .products li {
+    list-style: none;
+    padding: 0;
+    flex: 0 1 30rem;
+    margin: .5rem;
+    height: 40rem;
+    border: .1rem #c0c0c0 solid;
+    border-radius: .5rem;
+    padding: 1rem;
+    background-color: #fafafa;
+  }
+  .product{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height:100%;
+  }
+  .product-name{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
+  .product-brand{
+    border-top: .1rem #c0c0c0 solid;
+    font-size: 1.3rem;
+    color: #808080;
+    padding: 1rem;
+  }
+  .product-price{
+    border-top: .1rem #c0c0c0 solid;
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 1rem;
+  }
+  .product-image{
+    max-width: 24rem;
+    max-height: 24rem;
+    padding: .5rem;
+    border: .1rem #c0c0c0 solid;
+    border-radius: .5rem;
+    background-color: #ffffff;
+  }
+  .product-image:hover{
+    max-width: 24.5rem;
+    max-height: 24.5rem;
+    border: .1rem #c0c0c0 solid;
+    background-color: #f080000a;
+  }
+  .product-rating{
+    margin-bottom: 1rem;
+  }

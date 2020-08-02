@@ -10,6 +10,12 @@ import ProductsScreen from './screens/ProductsScreen'
 
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import ShippingScreen from './screens/ShippingScreen';
+import PaymentScreen from './screens/PaymentScreen';
+import PlaceOrderScreen from './screens/PlaceOrderScreen';
+import Sidebar from './screens/Sidebar';
+import CategoryScreen from './screens/CategoryScreen';
+import Cookie from 'js-cookie'
 
 function App() {
 
@@ -22,6 +28,11 @@ function App() {
     const closeMenu = () => {
         document.querySelector(".sidebar").classList.remove("open");
     }
+    const logout = () => {
+        Cookie.remove('userInfo');
+        Cookie.remove('cartItems');
+        window.location.reload()
+    }
   return (
     <BrowserRouter>
         <div className="grid-container">
@@ -30,34 +41,30 @@ function App() {
                     <button onClick={openMenu}>
                         &#9776;
                     </button>
-                    <Link to={'/'}>E-Commerces</Link>
+                    <Link to={'/'}>E-Commerces <i className="fas fa-store-alt"></i></Link>
                 </div>
                 <div className="header-links">
                     {
                         userInfo ? <>
-                                    <Link to='/profile'>{userInfo.name}</Link>
-                                    <Link to="/logout">logout</Link>
+                                    <Link to={userInfo.isAdmin ? '/products' : ''}><i className={userInfo.isAdmin ? "fa fa-user-cog" : "fa fa-user"}></i> {userInfo.name}</Link>
+                                    <a href='' style={{cursor:'pointer'}} onClick={logout}><i className="fas fa-sign-out-alt"></i>Logout</a>
                                     </>
-                                : <Link to="/signin">Sign-In</Link>
+                                : <Link to="/signin"><i className="fa fa-sign-in-alt"></i> Sign In</Link>
                     }
-                    <Link to="/cart">cart</Link>
+                    <Link to="/cart"><i className="fa fa-shopping-cart"></i> Cart</Link>
                 </div>
             </header>
             <aside className="sidebar">
-                <h3>Shopping Categories</h3>
-                <button className="sidebar-close-button" onClick={closeMenu}>x</button>
-                <ul>
-                    <li>
-                        <a href="index.html">Pants</a>
-                    </li>
-                    <li>
-                        <a href="index.html">Shirts</a>
-                    </li>
-                </ul>
+                <i onClick={closeMenu} className="sidebar-close-button secondary fa fa-angle-double-left"></i>
+                <Sidebar></Sidebar>
             </aside>
             <main className="main">
                 <div className="content">
                     <Route path="/products" component={ProductsScreen} />
+                    <Route path="/category/:id" component={CategoryScreen} />
+                    <Route path="/placeorder" component={PlaceOrderScreen} />
+                    <Route path="/payment" component={PaymentScreen} />
+                    <Route path="/shipping" component={ShippingScreen} />
                     <Route path="/signin" component={SigninScreen} />
                     <Route path="/register" component={RegisterScreen} />
                     <Route path="/product/:id" component={ProductScreen} />

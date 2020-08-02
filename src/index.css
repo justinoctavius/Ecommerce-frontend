@@ -5,8 +5,9 @@ html{
 }
 body{
     font: 1.6rem Helvetica;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
+    background-color: #f2f2f2;
 }
 button{
     font-size: 1.6rem;
@@ -56,7 +57,8 @@ button{
 .cart-price{
     flex: 1 1;
     font-size: 2.5rem;
-    text-align: right;
+    text-align: end;
+    align-self: start;
 }
 /* form */
 
@@ -85,4 +87,158 @@ input {
     padding: 1rem;
     border: .1rem #c0c0c0 solid;
     border-radius: .5rem;
+}
+
+
+/* Checkout Steps */
+
+.checkout-steps{
+    display: flex;
+    justify-content: space-between;
+    width: 40rem;
+    margin: 1rem auto;
+}
+.checkout-steps > div{
+    border-top: .3rem #c0c0c0 solid;
+    color: #c0c0c0 ;
+    flex: 1 1;
+    padding-top: 1rem;
+}
+.checkout-steps > div.active{
+    border-top: .3rem #f08000 solid;
+    color: #f08000 ;
+}
+
+
+/* -----------------------------General--------------------------------- */
+/* colors */
+.primary{
+    color: #f0c040;
+}
+.secondary{
+  color: #f0f0f0;
+}
+.success{
+    color: #408040;
+}
+.danger{
+  color: #aa2000;
+}
+/* Buttons */
+.button{
+  padding: 1rem;
+  border: .1rem #808080 solid;
+  border-radius: .5rem;
+  cursor: pointer;
+  margin: .5rem;
+  color: #404040;
+}
+/* buttons hover */
+.button:hover{
+  border: .1rem #404040 solid;
+}
+.button.primary:hover{
+  border: .1rem #404040 solid;
+  color: #404040;
+}
+.button.secondary:hover{
+  border: .1rem #404040 solid;
+  color: #ff8000;
+}
+/* buttons colors */
+.button.primary{
+  background-color: #f0c040;
+}
+.button.secondary{
+  background-color: #f0f0f0;
+}
+/*------------------------------ text styles-------------------*/
+/* layout */
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-left{
+  text-align: left;
+}
+/* font */
+.font-1{
+  font-size: 1rem; 
+}
+.font-2{
+  font-size: 2rem; 
+}
+.font-3{
+  font-size: 3rem; 
+}
+.font-4{
+  font-size: 4rem; 
+}
+.font-5{
+  font-size: 5rem; 
+}
+.font-6{
+  font-size: 6rem; 
+}
+.font-7{
+  font-size: 7rem; 
+}
+.font-8{
+  font-size: 8rem; 
+}
+.font-9{
+  font-size: 9rem; 
+}
+.font-10{
+  font-size: 10rem; 
+}
+/* ------------------------------properties------------------------------- */
+.hover:hover{
+  color: #ff8000;
+}
+.hover-danger:hover{
+  color: #aa2000;
+}
+.pointer{
+  cursor: pointer;
+}
+.link{
+  text-decoration: none;
+  font-weight: bold;
+  color: #404040;
+  padding: .5rem;
+}
+/*-------------------------------- Layout-------------------------------------*/
+.row{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+}
+.col{
+  text-align: center;
+}
+.d-flex{
+  display: flex;
+}
+.justify-content-center{
+  justify-content: center;
+}
+.justify-content-left{
+  justify-content: left;
+}
+.justify-content-right{
+  justify-content: right;
+}
+/* Delete and errors*/
+.willDelete{
+  border: .1rem red solid;
+}
+.willDelete:hover{
+  border: .1rem rgb(97, 6, 6) solid;
+}
+.error{
+  color: #aa2000;
+  font-size: 1.5rem;
+  font-weight: bold;
 }
