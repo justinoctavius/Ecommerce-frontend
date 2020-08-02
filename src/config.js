@@ -1,6 +1,6 @@
 require('dotenv')
 const env = {
-    API: process.env.BACKEND || 'http://localhost:5000/'
+    API: 'https://ecommerces29-backend.herokuapp.com/'
 }
 
 module.exports = env
