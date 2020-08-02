@@ -20,6 +20,7 @@ function Sidebar() {
             <h3 className="secondary">Categories</h3>
             <ul className="items">
                 {
+                    category.length > 0 &&
                     category.map((category) => 
                         <li key={category.category}>
                             <Link to={'/category/' + category.category}>{category.category}</Link>

@@ -18,6 +18,7 @@ import '../styles/home.css'
         <div>
             <ul className="products">
                 {
+                    products.length > 0 &&
                     products.map(product => 
                         <li key={product._id}>
                             <div className="product text-center">
