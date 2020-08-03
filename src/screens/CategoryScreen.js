@@ -11,7 +11,7 @@ function CategoryScreen(props) {
     const categoryProducts = products.filter((product) => product.category === category);
     useEffect(() => {
         dispatch(listProducts());
-    }, []);
+    }, [category]);
 
     return (
         loading? <div>Loading...</div>:
@@ -30,7 +30,7 @@ function CategoryScreen(props) {
                             </div>
                         </div>
                     : categoryProducts.map((product) => {
-                            return (<li key={product.category}>
+                            return (<li key={product._id}>
                                 <div className="product">
                                 <Link to={'/product/' + product._id}>
                                     <img className="product-image" src={product.image} alt="product"/>
